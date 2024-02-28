@@ -42,7 +42,10 @@ def selection_sort(values:list[int]) -> None:
 # input: list of Book objects
 # output: list of Book objects
 # purpose: sort an inputted list of books in alphabetical order
-# example:
+# example:   book1 = Book(['Neil Gaiman', 'Terry Pratchett'], 'Good Omens')
+# #          book2 = Book(['Ocean Vuong'], 'On Earth We're Briefly Gorgeous')
+# #          book3 = Book(['Harper Lee'], 'To Kill a Mockingbird')
+# #          selection_sort_index([book1,book2,book3] -> [book1,book2,book3]
 '''
 1. check if the inputted book list is empty
     1.1 if it is, return an empty list
@@ -58,7 +61,11 @@ def selection_sort(values:list[int]) -> None:
 # input: list of Book objects and an integer
 # output: integer
 # purpose: return the index of a book where the first letter in the title appears first in the alphabet
-'''example:
+# example: book1 = Book(['Neil Gaiman', 'Terry Pratchett'], 'Good Omens')
+#          book2 = Book(['Ocean Vuong'], 'On Earth We're Briefly Gorgeous')
+#          book3 = Book(['Harper Lee'], 'To Kill a Mockingbird')
+#          smallest_book_index([book1,book2,book3],0) -> 0
+'''
 1. check if the inputted index is greater than the length of the books list or if it is negative
     1.1 if it is, return None
 2. set a variable mindex to the inputted integer value
@@ -90,47 +97,24 @@ def selection_sort_books(book_list:list[Book]) -> list[Book]:
 # input: string
 # output: string
 # purpose: swap the letter case of each character in a string and don't modify non-letter characters
-# example:
-'''
-1. create an empty list letters to store each character in the string
-2. add each character in the inputted string to a list
-3. create an empty list swapped to store the swapped cases of each letter
-4. iterate through the letters list
-    4.1 check if the character is uppercase
-        4.1.1 if it is, change it to lowercase
-        4.1.2 add the changed case to the swapped list
-    4.2 check if the character is lowercase
-        4.2.1 if it is, change it to uppercase
-        4.2.2 add the changed case to the swapped list
-    4.3 if neither
-        4.3.1 add the character to the swapped list
-5. create an empty string final_word to store the final swapped word
-6. loop through each character in the swapped list and add it to the final_word
-7. return final_word
-'''
+# example: swap_case('HEyY tHeRE!') -> 'heYy ThEre!'
 # implementation:
-def swap_case(word:str) -> str:
-    letters = []
-    for char in word:
-        letters.append(char)
-    swapped = []
-    for letter in letters:
+def swap_case(words:str) -> str:
+    swapped = ''
+    for letter in words:
         if letter.isupper():
-            swapped.append(letter.lower())
+            swapped += letter.lower()
         elif letter.islower():
-            swapped.append(letter.upper())
+            swapped += letter.upper()
         else:
-            swapped.append(letter)
-    final_word = ''
-    for val in swapped:
-        final_word += val
-    return final_word
+            swapped += letter
+    return swapped
 
 # Part 3
 # input: three strings
 # output: string
 # purpose: replace an inputted character with another inputted character in an inputted word
-# example:
+# example: str_translate('hello',l,x) -> 'hexxo'
 '''
 1. check if the inputted old or new strings are one character
     1.1 if they aren't return 'Not a valid input'
@@ -166,28 +150,15 @@ def str_translate(word:str,old:str,new:str) -> str:
 # output: dictionary
 # purpose: create a dictionary where each word from an inputted string is given a key associated with the number of
 # times it appeared in the original string
-# example:
-'''
-1. create an empty dictionary dict
-2. create a list to store every word in an inputted string line
-3. loop through the the indices of the words list
-    3.1 create a variable count to store the number of times a word appears in the original
-        string and set it equal to 0
-    3.2 loop through each value in words
-        3.2.1 check if each word is equal each word in the words list
-        3.2.2 if it is, add 1 to the count
-    3.3 add that word to the dictionary with the key being the count
-4. return dict
-'''
+# example: histogram('hi there hi hi') -> {hi:3,there:1}
 # implementation:
 
 def histogram(line:str) -> dict:
     dict = {}
-    words = line.split(' ')
-    for idx in range(len(words)):
-        count = 0
-        for word in words:
-            if word == words[idx]:
-                count += 1
-        dict[words[idx]] = count
+    words = line.split()
+    for word in words:
+        if word in dict:
+            dict[word] += 1
+        else:
+            dict[word] = 1
     return dict
