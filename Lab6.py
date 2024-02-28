@@ -148,8 +148,8 @@ def swap_case(word:str) -> str:
 # implementation:
 
 def str_translate(word:str,old:str,new:str) -> str:
-    #if len(old) or len(new) != 1:
-    #    return 'Not a valid input'
+    if len(old) != 1 or len(new) != 1:
+        return 'Not a valid input'
     chars = []
     for char in word:
         chars.append(char)
@@ -191,6 +191,3 @@ def histogram(line:str) -> dict:
                 count += 1
         dict[words[idx]] = count
     return dict
-
-
-
