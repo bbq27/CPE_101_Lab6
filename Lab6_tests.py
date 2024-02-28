@@ -124,7 +124,7 @@ class TestCases(unittest.TestCase):
 
     def test_str_translate4(self):
         old = 'he has a heavenly smile'
-        self.assertEqual('Not a valid input',str_translate(old, 'e', '_'))
+        self.assertEqual('h_ has a h_av_nly smil_',str_translate(old, 'e', '_'))
 
     # Part 4
     def test_histogram1(self):
